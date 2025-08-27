@@ -1,0 +1,54 @@
+[build]
+  # Expo web export command (disabled for manual deploy)
+  # command = "npm run build"
+  
+  # Expo exports to build/ directory  
+  publish = "build"
+  
+  # Build environment variables
+  environment = { NODE_VERSION = "18", NODE_ENV = "production", EXPO_USE_STATIC = "true" }
+
+[dev]
+  # Development server for Netlify Dev
+  command = "npm run dev"
+  port = 8080
+  targetPort = 19006
+  autoLaunch = false
+
+# Redirect rules for SPA routing (Expo Router)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Security headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+# Cache static assets
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Cache JS/CSS with hash
+[[headers]]
+  for = "/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Service Worker caching
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Edge functions for AI (if using Netlify Functions instead of Supabase)
+# [functions]
+#   included_files = ["src/services/ai.ts"]

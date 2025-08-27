@@ -1,0 +1,68 @@
+{
+  "expo": {
+    "name": "Inzicht Coach",
+    "slug": "inzicht-coach",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#D2691E"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.inzichtcoach.app",
+      "infoPlist": {
+        "NSMicrophoneUsageDescription": "Deze app gebruikt de microfoon voor spraakdagboek functionaliteit om je gedachten op te nemen.",
+        "NSCameraUsageDescription": "Deze app heeft toegang tot je camera nodig voor profielfoto's.",
+        "NSPhotoLibraryUsageDescription": "Deze app heeft toegang tot je fotobibliotheek nodig om foto's te selecteren."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#D2691E"
+      },
+      "edgeToEdgeEnabled": true,
+      "permissions": [
+        "android.permission.RECORD_AUDIO",
+        "android.permission.CAMERA",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.RECEIVE_BOOT_COMPLETED",
+        "android.permission.VIBRATE"
+      ],
+      "package": "com.inzichtcoach.app"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
+    },
+    "scheme": "inzicht-coach",
+    "notification": {
+      "icon": "./assets/notification-icon.png",
+      "color": "#D2691E"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/notification-icon.png",
+          "color": "#D2691E"
+        }
+      ],
+      [
+        "expo-av",
+        {
+          "microphonePermission": "Deze app gebruikt de microfoon voor spraakdagboek functionaliteit."
+        }
+      ]
+    ]
+  }
+}

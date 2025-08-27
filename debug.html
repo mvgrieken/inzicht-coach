@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Debug - Inzicht Coach</title>
+</head>
+<body>
+    <div id="root">
+        <h1>Debug: Environment Variables</h1>
+        <div id="env-vars"></div>
+        <hr>
+        <h2>Console Output</h2>
+        <div id="console-output"></div>
+    </div>
+    
+    <script>
+        // Debug environment variables
+        const envVars = {
+            'EXPO_PUBLIC_SUPABASE_URL': process.env.EXPO_PUBLIC_SUPABASE_URL || 'NOT SET',
+            'EXPO_PUBLIC_SUPABASE_ANON_KEY': process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY ? 'SET' : 'NOT SET',
+            'NODE_ENV': process.env.NODE_ENV || 'NOT SET'
+        };
+        
+        document.getElementById('env-vars').innerHTML = 
+            '<pre>' + JSON.stringify(envVars, null, 2) + '</pre>';
+            
+        // Capture console logs
+        const consoleOutput = document.getElementById('console-output');
+        const originalLog = console.log;
+        const originalError = console.error;
+        
+        console.log = function(...args) {
+            consoleOutput.innerHTML += '<div style="color: blue;">LOG: ' + args.join(' ') + '</div>';
+            originalLog.apply(console, args);
+        };
+        
+        console.error = function(...args) {
+            consoleOutput.innerHTML += '<div style="color: red;">ERROR: ' + args.join(' ') + '</div>';
+            originalError.apply(console, args);
+        };
+        
+        console.log('Debug page loaded');
+        console.log('Current URL:', window.location.href);
+    </script>
+</body>
+</html>
