@@ -122,12 +122,15 @@ De AI coach is getraind in:
 
 ## 🔒 **Privacy & Security**
 
-- ✅ End-to-end encryptie voor gevoelige data
-- ✅ GDPR/AVG compliant
-- ✅ Geen client-side API keys
-- ✅ RLS policies voor data isolatie
-- ✅ Anonieme usage mogelijk
-- ✅ Data export functionaliteit
+- ✅ **Transport & At-Rest Encryptie** (HTTPS + database encryption)
+- ✅ **GDPR/AVG Compliant** met privacy by design
+- ✅ **Geen client-side API keys** (server-side only)
+- ✅ **Row Level Security (RLS)** voor data isolatie  
+- ✅ **Pseudonieme usage** mogelijk
+- ✅ **Data export functionaliteit** (alle gebruikersdata)
+- ✅ **Crisis support** met Nederlandse hulpnummers
+
+*Zie [Privacy Documentatie](./docs/privacy/) voor complete DPIA en procedures.*
 
 ## 🌍 **Cross-Platform Support**
 

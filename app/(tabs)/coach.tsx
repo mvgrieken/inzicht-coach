@@ -83,6 +83,14 @@ export default function CoachScreen() {
           )}
         </View>
         
+        {/* Medical Disclaimer */}
+        <View style={tw`bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800 p-3 rounded-lg mb-4`}>
+          <Text style={tw`text-orange-800 dark:text-orange-200 text-xs font-medium`}>
+            ⚠️ Sam is een AI-assistent, geen medische professional. Bij ernstige problemen: 
+            bel 113 (Suicide Prevention) of zoek professionele hulp.
+          </Text>
+        </View>
+        
         {/* Chat Messages */}
         <ScrollView 
           ref={scrollViewRef}

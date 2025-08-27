@@ -174,13 +174,35 @@ export default function ProfileScreen() {
             </TouchableOpacity>
           </View>
 
-          {/* Emergency & Sign Out */}
+          {/* Crisis Support */}
           <View style={tw`mb-6`}>
-            <TouchableOpacity style={tw`bg-red-500 p-4 rounded-lg items-center mb-3`}>
-              <Text style={tw`text-white font-semibold text-base`}>
-                🆘 Hulp nodig?
+            <Text style={tw`text-lg font-semibold text-neutral-800 dark:text-neutral-200 mb-4`}>
+              Crisis ondersteuning
+            </Text>
+            
+            <View style={tw`bg-red-50 border border-red-200 p-4 rounded-lg mb-3`}>
+              <Text style={tw`text-red-800 font-semibold mb-2`}>
+                🚨 Bij acute nood:
               </Text>
-            </TouchableOpacity>
+              <Text style={tw`text-red-700 text-sm mb-2`}>
+                • 112 - Spoedeisende hulp
+              </Text>
+              <Text style={tw`text-red-700 text-sm mb-2`}>
+                • 113 - Suicide Prevention (24/7 gratis)
+              </Text>
+              <Text style={tw`text-red-700 text-sm mb-2`}>
+                • 0900-1450 - GGZ Spoeddienst
+              </Text>
+              <Text style={tw`text-red-700 text-sm`}>
+                • Je huisarts bij fysieke klachten
+              </Text>
+            </View>
+            
+            <View style={tw`bg-orange-50 border border-orange-200 p-3 rounded-lg mb-3`}>
+              <Text style={tw`text-orange-800 text-xs font-medium`}>
+                ⚠️ Disclaimer: Deze app is geen vervanging voor professionele medische hulp
+              </Text>
+            </View>
             
             <TouchableOpacity 
               style={tw`bg-neutral-200 dark:bg-neutral-700 p-4 rounded-lg items-center`}
