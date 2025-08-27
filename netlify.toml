@@ -1,6 +1,6 @@
 [build]
-  # Expo web export command (disabled for manual deploy)
-  # command = "npm run build"
+  # Expo web export command
+  command = "npm run build"
   
   # Expo exports to build/ directory  
   publish = "build"

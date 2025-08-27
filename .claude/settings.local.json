@@ -29,7 +29,8 @@
       "WebFetch(domain:68adff185646122dec3f72b6--inzicht-coach.netlify.app)",
       "Bash(npx serve:*)",
       "Bash(timeout 30 npm run build)",
-      "Bash(taskkill:*)"
+      "Bash(taskkill:*)",
+      "Bash(npx supabase:*)"
     ],
     "deny": [],
     "ask": []
