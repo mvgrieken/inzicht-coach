@@ -1,0 +1,53 @@
+[build]
+  # Build and publish the static export from Expo
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "18"
+  EXPO_USE_STATIC = "1"
+
+[dev]
+  # Development server for Netlify Dev
+  command = "npm run dev"
+  port = 8080
+  targetPort = 19006
+  autoLaunch = false
+
+# Redirect rules for SPA routing (Expo Router)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Security headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(self), microphone=(self), geolocation=(self)"
+
+# Cache static assets
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Cache JS/CSS with hash
+[[headers]]
+  for = "/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Service Worker caching
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Edge functions for AI (if using Netlify Functions instead of Supabase)
+# [functions]
+#   included_files = ["src/services/ai.ts"]

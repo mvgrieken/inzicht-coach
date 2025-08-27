@@ -1,0 +1,10 @@
+# CODEOWNERS
+# Gebruik GitHub handles. Vervang onderstaande placeholder met jullie team/handles.
+# Voorbeeld: * @inzicht-coach/core-team
+
+* @OWNER
+
+# Optioneel: specifieker eigenaarschap per map/bestand
+# /app/ @OWNER
+# /src/ @OWNER
+# /supabase/ @OWNER

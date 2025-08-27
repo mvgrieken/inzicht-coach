@@ -1,0 +1,37 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(/C:\\Users\\MartijnvanGrieken\\Dropbox\\Apps\\inzicht-coach\\docs/**)",
+      "Bash(npx create-expo-app:*)",
+      "Bash(find:*)",
+      "Bash(rmdir:*)",
+      "Bash(npm install)",
+      "Bash(npm install:*)",
+      "Bash(npx expo install:*)",
+      "Bash(npm start)",
+      "Bash(npm cache clean:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(npx expo start:*)",
+      "Bash(npm run web:*)",
+      "Bash(npm run typecheck:*)",
+      "Bash(curl:*)",
+      "WebFetch(domain:localhost)",
+      "Bash(npm run lint:*)",
+      "Bash(node:*)",
+      "Bash(git remote get-url:*)",
+      "Bash(gh repo view:*)",
+      "Bash(netlify:*)",
+      "Bash(npm run build:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "WebFetch(domain:inzicht-coach.netlify.app)",
+      "WebFetch(domain:68adff185646122dec3f72b6--inzicht-coach.netlify.app)",
+      "Bash(npx serve:*)",
+      "Bash(timeout 30 npm run build)",
+      "Bash(taskkill:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
