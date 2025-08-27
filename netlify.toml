@@ -1,12 +1,10 @@
 [build]
-  # Expo web export command
-  command = "npm run build"
-  
-  # Expo exports to build/ directory  
-  publish = "build"
-  
-  # Build environment variables
-  environment = { NODE_VERSION = "18", NODE_ENV = "production", EXPO_USE_STATIC = "true" }
+  command = "npx expo export --platform web"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "18"
+  EXPO_USE_STATIC = "1"
 
 [dev]
   # Development server for Netlify Dev

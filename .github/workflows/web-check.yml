@@ -1,0 +1,62 @@
+name: Web Export Validation
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'app/**'
+      - 'src/**'
+      - 'package.json'
+      - 'index.ts'
+      - 'App.tsx'
+      - 'netlify.toml'
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-web-export:
+    name: 🌐 Test Expo Web Export
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📚 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 📦 Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: 📥 Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: 🏗️ Export web build
+        run: npx expo export --platform web
+        env:
+          EXPO_PUBLIC_SUPABASE_URL: https://demo.supabase.co
+          EXPO_PUBLIC_SUPABASE_ANON_KEY: demo_key_for_build
+          EXPO_PUBLIC_APP_VERSION: 1.0.0
+
+      - name: 🔍 Verify export output
+        run: |
+          echo "Checking dist/ directory structure..."
+          ls -la dist/
+          echo ""
+          echo "Checking for required files..."
+          test -f dist/index.html || (echo "❌ index.html missing" && exit 1)
+          test -f dist/_expo/static/js/web/*.js || (echo "❌ JavaScript bundle missing" && exit 1)
+          echo "✅ All required files present"
+
+      - name: 📤 Upload dist artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: expo-web-dist
+          path: dist/
+          retention-days: 7
+
+      - name: 🔍 Validate HTML structure
+        run: |
+          echo "Checking HTML structure..."
+          grep -q "Inzicht Coach" dist/index.html || (echo "❌ App title missing" && exit 1)
+          grep -q "_expo/static/js/web" dist/index.html || (echo "❌ JS bundle reference missing" && exit 1)
+          echo "✅ HTML structure valid"
