@@ -3,82 +3,52 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createClient } from '@supabase/supabase-js';
 import { Database } from '@/lib/types/supabase';
 
-// Environment variables with fallbacks for development/production
-const supabaseUrl = process.env.EXPO_PUBLIC_SUPABASE_URL || '';
-const supabaseAnonKey = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY || '';
+// Environment variables with strict validation
+const supabaseUrl = process.env.EXPO_PUBLIC_SUPABASE_URL;
+const supabaseAnonKey = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY;
 
-console.log('Supabase config check:');
-console.log('URL:', supabaseUrl ? 'SET' : 'MISSING');
-console.log('Key:', supabaseAnonKey ? 'SET' : 'MISSING');
-
-// Create a mock client if environment variables are missing (for development/demo)
-let supabase: any;
-
+// Validate environment variables
 if (!supabaseUrl || !supabaseAnonKey) {
-  console.warn('Missing Supabase environment variables - creating mock client');
-
-  // Mock Supabase client for when env vars are missing
-  supabase = {
-    auth: {
-      getSession: async () => ({ data: { session: null }, error: null }),
-      signInWithPassword: async () => ({
-        data: { user: null },
-        error: { message: 'Demo mode - environment variables not configured' },
-      }),
-      signUp: async () => ({
-        data: { user: null },
-        error: { message: 'Demo mode - environment variables not configured' },
-      }),
-      signOut: async () => ({ error: null }),
-      onAuthStateChange: () => ({ data: { subscription: { unsubscribe: () => {} } } }),
-      resetPasswordForEmail: async () => ({ data: null, error: null }),
-    },
-    from: () => ({
-      select: () => ({
-        eq: () => ({
-          order: () => ({ data: [], error: null }),
-          single: () => ({ data: null, error: null }),
-          limit: () => ({ data: [], error: null }),
-        }),
-      }),
-      insert: () => ({
-        select: () => ({
-          single: () => ({ data: null, error: null }),
-        }),
-      }),
-      upsert: () => ({
-        select: () => ({
-          single: () => ({ data: null, error: null }),
-        }),
-      }),
-      delete: () => ({
-        eq: () => ({ error: null }),
-      }),
-    }),
-    rpc: async () => ({ data: null, error: null }),
-    functions: {
-      invoke: async () => ({
-        data: { message: 'Demo response - configure environment variables for full functionality' },
-        error: null,
-      }),
-    },
-    storage: {
-      from: () => ({
-        upload: async () => ({ data: null, error: null }),
-        getPublicUrl: () => ({ data: { publicUrl: '' } }),
-      }),
-    },
-  };
-} else {
-  console.log('Creating real Supabase client');
-  supabase = createClient<Database>(supabaseUrl, supabaseAnonKey, {
-    auth: {
-      storage: AsyncStorage,
-      autoRefreshToken: true,
-      persistSession: true,
-      detectSessionInUrl: false,
-    },
-  });
+  throw new Error(
+    'Missing required environment variables: EXPO_PUBLIC_SUPABASE_URL and EXPO_PUBLIC_SUPABASE_ANON_KEY must be set'
+  );
 }
 
-export { supabase };
+// Validate URL format
+try {
+  new URL(supabaseUrl);
+} catch {
+  throw new Error('Invalid EXPO_PUBLIC_SUPABASE_URL format');
+}
+
+// Create Supabase client with enhanced configuration
+export const supabase = createClient<Database>(supabaseUrl, supabaseAnonKey, {
+  auth: {
+    storage: AsyncStorage,
+    autoRefreshToken: true,
+    persistSession: true,
+    detectSessionInUrl: false,
+  },
+  global: {
+    headers: {
+      'X-Client-Info': 'inzicht-coach/1.0.0',
+    },
+  },
+  realtime: {
+    params: {
+      eventsPerSecond: 10,
+    },
+  },
+});
+
+// Health check function
+export const checkSupabaseConnection = async () => {
+  try {
+    const { data, error } = await supabase.from('profiles').select('count').limit(1);
+    if (error) throw error;
+    return true;
+  } catch (error) {
+    console.error('Supabase connection check failed:', error);
+    return false;
+  }
+};

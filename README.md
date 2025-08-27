@@ -1,175 +1,240 @@
-# Inzicht Coach - AI-gedreven Alcoholreductie App
+# Inzicht Coach 🍃
 
-![CI](https://github.com/mvgrieken/inzicht-coach/actions/workflows/ci.yml/badge.svg)
-[![Website](https://img.shields.io/website?url=https%3A%2F%2Finzicht-coach.netlify.app&label=Netlify%20Site&logo=netlify)](https://inzicht-coach.netlify.app/)
-[![Netlify Deploys](https://img.shields.io/badge/Netlify-Deploys-blue?logo=netlify)](https://app.netlify.com/sites/inzicht-coach/deploys)
+Een empathische AI-coach app voor mensen die willen stoppen of minderen met alcohol. Gebouwd met React Native, Expo, Supabase en OpenAI.
 
-Live:
-- Netlify: https://inzicht-coach.netlify.app/
-- GitHub Pages: wordt automatisch gedeployed via Actions (Pages workflow)
+## 🚀 Features
 
-Een moderne React Native app (met Expo) die mensen helpt bewust met alcohol om te gaan en hun consumptie te verminderen of stoppen.
+- **AI Coach**: Persoonlijke begeleiding met motiverende gespreksvoering
+- **Dagelijks Logboek**: Bijhouden van alcoholgebruik en stemming
+- **Spraakdagboek**: Voice-to-text functionaliteit voor reflectie
+- **Gamification**: Punten, badges en streaks voor motivatie
+- **Motivatiekaarten**: Persoonlijke herinneringen aan je doelen
+- **Statistieken**: Inzicht in je voortgang en patronen
+- **Dark Mode**: Ondersteuning voor donkere modus
+- **Offline Support**: Werkt ook zonder internetverbinding
 
-## Quick Start
+## 🛠️ Tech Stack
+
+- **Frontend**: React Native, Expo, TypeScript
+- **Styling**: Tailwind CSS (twrnc)
+- **State Management**: Zustand, React Query
+- **Backend**: Supabase (PostgreSQL, Auth, Storage)
+- **AI**: OpenAI GPT-4 (Edge Functions)
+- **Voice**: Expo AV, Whisper API
+- **Deployment**: Netlify
+
+## 📋 Vereisten
+
+- Node.js 18+
+- npm of yarn
+- Expo CLI
+- Supabase account
+- OpenAI API key
+
+## 🚀 Snel Starten
+
+### 1. Repository Klonen
 
 ```bash
-# Install dependencies
-npm install --legacy-peer-deps
-
-# Start development server
-npm start
-
-# Run on specific platforms
-npm run ios     # iOS (macOS required)
-npm run android # Android
-npm run web     # Web browser
+git clone https://github.com/your-username/inzicht-coach.git
+cd inzicht-coach
 ```
 
-## Features
+### 2. Dependencies Installeren
 
-### Volledig geïmplementeerd
-
-- Project setup: Expo + TypeScript
-- Modern UI: Tailwind CSS (twrnc), dark/light mode
-- Authenticatie: Supabase Auth met RLS
-- Dashboard: statistieken en voortgang
-- Dagboek: alcohol logging met mood tracking
-- AI Coach: chat met empathische AI (Sam)
-- Voice Journal: spraaknotities met transcriptie
-- Kennisbank: artikelen en oefeningen
-- Gamification: punten, badges, streaks
-- Profiel: gebruikersstatistieken en instellingen
-
-### Technische stack
-
-- Frontend: React Native, Expo Router, TypeScript
-- Styling: Tailwind CSS (twrnc)
-- Backend: Supabase (PostgreSQL, Auth, Storage)
-- State: TanStack Query + Zustand
-- AI: OpenAI (GPT-4, Whisper) via Supabase Edge Functions
-- Platforms: iOS, Android, Web
-
-## Architectuur
-
-```
-app/                    # Expo Router screens
-  (tabs)/               # Hoofdtabbladen
-  auth/                 # Login/Register
-  _layout.tsx           # Root layout met providers
-src/
-  components/           # UI componenten (logbook/voice/ui)
-  hooks/                # Custom hooks
-  services/             # Externe services (supabase, ai)
-  types/                # Types
-  utils/                # Utilities
-  data/                 # Statische data
-supabase/
-  migrations/           # Database migrations
-  functions/            # Edge functions (AI)
+```bash
+npm install
 ```
 
-## Gamification
+### 3. Environment Variables Instellen
 
-- 10 punten: alcoholvrije dag (0 glazen)
-- 5 punten: binnen dagdoel (≤ 2 glazen)
-- 0 punten: over dagdoel (> 2 glazen)
+Kopieer het voorbeeld bestand en vul je eigen waarden in:
 
-Badges (selectie): eerste week/maand, 5/10/30/100-dagen streak, nul held, doel bereiker, spraak dagboeker, AI gesprekspartner.
-
-## AI Coach “Sam”
-
-- Gebaseerd op MI/CGT, NL-taal, empathische stijl
-- 24/7 chat, context-aware gesprekken, quick actions
-- Voice journal transcriptie, patroonherkenning
-
-## Database & Security
-
-Hoofdtabellen: `profiles`, `daily_logs`, `voice_journals`, `chat_messages`, `achievements`, `motivation_cards`, `user_points`.
-
-Beveiliging:
-- Row Level Security (RLS) op alle tabellen
-- JWT Authenticatie (Supabase)
-- API keys alleen server-side (Edge Functions)
-
-## Privacy & Security
-
-- Versleuteling voor gevoelige data
-- GDPR/AVG compliant
-- Geen client-side API keys
-- Anonieme usage mogelijk
-- Data export functionaliteit
-
-## Cross-platform
-
-- iOS/Android: biometrie, notificaties, voice recording
-- Web: responsive, PWA-achtig, Web Audio API, browser notifications
-
-## Gebruikersflow
-
-1. Onboarding: account en doelen
-2. Dagelijks: dagboek en punten
-3. Support: AI chat
-4. Groei: badges en streaks
-5. Inzicht: statistieken en patronen
-
-## Statistieken & Analytics
-
-- Streak, punten, geld/calorieën bespaard, % doelen behaald
-- Trends per week/maand, mood correlaties, voice sentiment
-
-## Crisis Support
-
-- Noodknop, detectie in AI chat, doorverwijzing hulp
-
-## Toekomstig
-
-- Community/buddy, advanced AI, wearables
-- Offline sync, telehealth integratie
-
----
-
-## Development
-
-### Environment variables
+```bash
+cp env.example .env
 ```
-EXPO_PUBLIC_SUPABASE_URL=your_supabase_url
+
+Vul de volgende variabelen in:
+
+```env
+EXPO_PUBLIC_SUPABASE_URL=your_supabase_project_url
 EXPO_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
-SUPABASE_SERVICE_KEY=your_service_key
-OPENAI_API_KEY=your_openai_key
-ANTHROPIC_API_KEY=your_anthropic_key
+OPENAI_API_KEY=your_openai_api_key
 ```
 
-### .env.local (development)
-- Maak in de projectroot een `.env.local` (staat in `.gitignore`).
-- Zet hier alleen publieke variabelen voor de client in:
-  - `EXPO_PUBLIC_SUPABASE_URL`
-  - `EXPO_PUBLIC_SUPABASE_ANON_KEY`
-- Server-side secrets (OPENAI/ANTHROPIC/SUPABASE_SERVICE_KEY) horen in Supabase/CI, niet in `.env.local`.
+### 4. Database Setup
 
-### Commands
+Voer de Supabase migraties uit:
+
 ```bash
-npm run typecheck  # TypeScript validation
-npm run lint       # ESLint checking
-npm run build      # Static web export (dist)
-npx expo doctor    # Health check
+# Installeer Supabase CLI
+npm install -g supabase
+
+# Login en link je project
+supabase login
+supabase link --project-ref your-project-ref
+
+# Voer migraties uit
+supabase db push
 ```
 
-## Deployment
+### 5. Development Server Starten
 
-- Netlify
-  - Configureer env vars in Netlify: `EXPO_PUBLIC_SUPABASE_URL`, `EXPO_PUBLIC_SUPABASE_ANON_KEY`.
-  - Build command: `npm run build`, Publish directory: `dist` (ook vastgelegd in `netlify.toml`).
-  - Trigger een deploy via Netlify Deploys of push naar `main` (repo is gekoppeld).
-  - Live: https://inzicht-coach.netlify.app/
+```bash
+npm run dev
+```
 
-- GitHub Pages (preview)
-  - Settings → Pages → Source: GitHub Actions.
-  - Actions → Variables: voeg `EXPO_PUBLIC_SUPABASE_URL`, `EXPO_PUBLIC_SUPABASE_ANON_KEY` toe.
-  - Actions → Workflow “Deploy to GitHub Pages” → Run workflow (op `main`).
-  - Base path is ingesteld op `/inzicht-coach/`; SPA fallback (`404.html`) wordt automatisch aangemaakt.
+De app is nu beschikbaar op `http://localhost:19006`
 
-Status: Production Ready – core features geïmplementeerd en getest.
+## 🏗️ Project Structuur
+
+```
+inzicht-coach/
+├── app/                    # Expo Router pages
+│   ├── (tabs)/            # Tab navigatie
+│   ├── auth/              # Authenticatie pagina's
+│   └── _layout.tsx        # Root layout
+├── src/
+│   ├── components/        # Herbruikbare componenten
+│   ├── contexts/          # React contexts
+│   ├── hooks/             # Custom hooks
+│   ├── services/          # API services
+│   ├── types/             # TypeScript types
+│   └── utils/             # Utility functies
+├── supabase/
+│   ├── functions/         # Edge functions
+│   └── migrations/        # Database migraties
+└── assets/                # Static assets
+```
+
+## 🔧 Development
+
+### Scripts
+
+```bash
+# Development
+npm run dev              # Start development server
+npm run android          # Start Android emulator
+npm run ios              # Start iOS simulator
+
+# Code Quality
+npm run lint             # ESLint check
+npm run lint:fix         # ESLint auto-fix
+npm run typecheck        # TypeScript check
+npm run format           # Prettier format
+npm run validate         # Run all checks
+
+# Testing
+npm run test             # Run tests
+npm run test:watch       # Watch mode
+npm run test:coverage    # Coverage report
+
+# Build & Deploy
+npm run build            # Production build
+npm run deploy:push      # Deploy to Netlify
+```
+
+### Code Style
+
+We gebruiken:
+- **ESLint** voor code linting
+- **Prettier** voor code formatting
+- **TypeScript** voor type safety
+- **Husky** voor git hooks
+
+### Git Workflow
+
+1. Maak een feature branch: `git checkout -b feature/your-feature`
+2. Commit je wijzigingen: `git commit -m "feat: add new feature"`
+3. Push naar remote: `git push origin feature/your-feature`
+4. Maak een Pull Request
+
+## 🔒 Security
+
+- **Row Level Security (RLS)** op alle database tabellen
+- **Input validatie** met Zod schemas
+- **Rate limiting** op API endpoints
+- **Environment variables** voor gevoelige data
+- **Audit logging** voor security monitoring
+
+## 📱 Deployment
+
+### Netlify (Web)
+
+1. Connect je repository aan Netlify
+2. Build command: `npm run build`
+3. Publish directory: `dist`
+4. Environment variables instellen in Netlify dashboard
+
+### Mobile Apps
+
+```bash
+# Build voor production
+eas build --platform ios
+eas build --platform android
+
+# Submit naar app stores
+eas submit --platform ios
+eas submit --platform android
+```
+
+## 🧪 Testing
+
+```bash
+# Unit tests
+npm run test
+
+# Integration tests
+npm run test:integration
+
+# E2E tests
+npm run test:e2e
+```
+
+## 📊 Monitoring
+
+- **Error Tracking**: Sentry (optioneel)
+- **Analytics**: Custom analytics
+- **Performance**: React Query DevTools
+- **Logs**: Supabase logs
+
+## 🤝 Bijdragen
+
+1. Fork het project
+2. Maak een feature branch
+3. Commit je wijzigingen
+4. Push naar de branch
+5. Open een Pull Request
+
+### Commit Conventies
+
+We gebruiken [Conventional Commits](https://www.conventionalcommits.org/):
+
+- `feat:` nieuwe features
+- `fix:` bug fixes
+- `docs:` documentatie
+- `style:` formatting
+- `refactor:` code refactoring
+- `test:` tests
+- `chore:` build tasks
+
+## 📄 Licentie
+
+Dit project is gelicenseerd onder de MIT License - zie [LICENSE](LICENSE) voor details.
+
+## 🆘 Support
+
+- **Documentatie**: [docs.inzichtcoach.nl](https://docs.inzichtcoach.nl)
+- **Issues**: [GitHub Issues](https://github.com/your-username/inzicht-coach/issues)
+- **Email**: support@inzichtcoach.nl
+
+## 🙏 Dankbetuiging
+
+- [Expo](https://expo.dev/) voor het geweldige React Native framework
+- [Supabase](https://supabase.com/) voor de backend services
+- [OpenAI](https://openai.com/) voor de AI functionaliteit
+- Alle contributors en testers
 
 ---
 
-Deze app volgt evidence-based methoden uit de verslavingszorg en is ontworpen met privacy en veiligheid als hoge prioriteit.
+**Let op**: Deze app is geen vervanging voor professionele medische hulp. Bij ernstige problemen, neem contact op met een arts of hulpverlener.

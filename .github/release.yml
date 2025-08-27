@@ -1,0 +1,34 @@
+changelog:
+  categories:
+    - title: Breaking Changes
+      labels:
+        - breaking
+        - breaking-change
+        - semver:major
+    - title: Features
+      labels:
+        - feature
+        - enhancement
+        - feat
+        - semver:minor
+    - title: Fixes
+      labels:
+        - fix
+        - bug
+        - patch
+        - semver:patch
+    - title: Documentation
+      labels:
+        - docs
+    - title: Chores & CI
+      labels:
+        - chore
+        - build
+        - ci
+    - title: Internal (refactor/tests)
+      labels:
+        - refactor
+        - test
+  exclude:
+    labels:
+      - skip-changelog
