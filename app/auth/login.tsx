@@ -7,8 +7,8 @@ import { useAuthContext } from '@/contexts/AuthContext';
 
 export default function LoginScreen() {
   const router = useRouter();
-  const [email, setEmail] = useState('demo@inzichtcoach.nl');
-  const [password, setPassword] = useState('demo123456');
+  const [email, setEmail] = useState('test@inzichtcoach.nl');
+  const [password, setPassword] = useState('test123456');
   const [isLoading, setIsLoading] = useState(false);
 
   // Environment variables (for debug panel)
@@ -100,6 +100,8 @@ export default function LoginScreen() {
             placeholder="Wachtwoord"
             placeholderTextColor={tw.color('neutral-500')}
             secureTextEntry
+            autoComplete="current-password"
+            textContentType="password"
           />
         </View>
 
@@ -130,15 +132,15 @@ export default function LoginScreen() {
           </TouchableOpacity>
         </View>
 
-        {/* Quick demo login */}
+        {/* Quick test login */}
         <TouchableOpacity
           style={tw`mt-8 p-3 border border-primary-200 dark:border-primary-800 rounded-lg items-center`}
           onPress={() => {
-            setEmail('demo@inzichtcoach.nl');
-            setPassword('demo123456');
+            setEmail('test@inzichtcoach.nl');
+            setPassword('test123456');
           }}
         >
-          <Text style={tw`text-primary-500 font-medium text-sm`}>Demo account gebruiken</Text>
+          <Text style={tw`text-primary-500 font-medium text-sm`}>Test account gebruiken</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
