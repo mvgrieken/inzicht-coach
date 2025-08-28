@@ -43,10 +43,10 @@ function patchHtml(content) {
   content = content.replace(/(href|src)=("|')\//g, `$1=$2${basePath}`);
   
   // Add cache-busting to JavaScript files with more aggressive approach
-  content = content.replace(
-    /(src="[^"]*\.js)([^"]*)(")/g,
-    `$1?v=${timestamp}&cb=${Date.now()}$3`
-  );
+content = content.replace(
+  /(src="[^"]*\.js)([^"]*)(")/g,
+  `$1?v=${timestamp}&cb=${Date.now()}&force=${Math.random().toString(36).substring(7)}$3`
+);
   
   return content;
 }
