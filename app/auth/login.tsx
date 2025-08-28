@@ -69,13 +69,7 @@ export default function LoginScreen() {
             {missingEnv ? 'App wordt geconfigureerd...' : 'Log in om je voortgang te bekijken'}
           </Text>
 
-          {/* Debug panel */}
-          <View style={tw`bg-blue-50 border border-blue-200 p-4 rounded-lg mb-4`}>
-            <Text style={tw`text-blue-800 font-medium mb-2 text-center`}>Debug status</Text>
-            <Text style={tw`text-xs text-blue-700`}>Supabase URL: {supabaseUrl ? 'SET' : 'MISSING'}</Text>
-            <Text style={tw`text-xs text-blue-700`}>Supabase Key: {supabaseKey ? 'SET' : 'MISSING'}</Text>
-            <Text style={tw`text-xs text-blue-700`}>AuthContext: {authContext ? 'Working' : 'Failed'}</Text>
-          </View>
+
         </View>
 
         <View style={tw`mb-6`}>

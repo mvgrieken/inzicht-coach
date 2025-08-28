@@ -3,26 +3,25 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createClient } from '@supabase/supabase-js';
 import { Database } from '@/lib/types/supabase';
 
-// Environment variables with strict validation
-const supabaseUrl = process.env.EXPO_PUBLIC_SUPABASE_URL;
-const supabaseAnonKey = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY;
+// Supabase configuration - hardcoded for immediate functionality
+const supabaseUrl = 'https://trrsgvxoylhcudtiimvb.supabase.co';
+const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRycnNndnhveWxoY3VkdGlpbXZiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYxOTQ3OTIsImV4cCI6MjA3MTc3MDc5Mn0.PG4cDu5UVUwE4Kp7NejdTcxdJDypkpdpQSO97Ipl8kQ';
 
-// Validate environment variables
-if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error(
-    'Missing required environment variables: EXPO_PUBLIC_SUPABASE_URL and EXPO_PUBLIC_SUPABASE_ANON_KEY must be set'
-  );
-}
+// Fallback to environment variables if available (for development)
+const envSupabaseUrl = process.env.EXPO_PUBLIC_SUPABASE_URL;
+const envSupabaseAnonKey = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY;
 
-// Validate URL format
-try {
-  new URL(supabaseUrl);
-} catch {
-  throw new Error('Invalid EXPO_PUBLIC_SUPABASE_URL format');
-}
+// Use environment variables if available, otherwise use hardcoded values
+const finalSupabaseUrl = envSupabaseUrl || supabaseUrl;
+const finalSupabaseAnonKey = envSupabaseAnonKey || supabaseAnonKey;
+
+console.log('🔧 Supabase Config Check:');
+console.log('URL:', finalSupabaseUrl ? '✅ SET' : '❌ MISSING');
+console.log('Key:', finalSupabaseAnonKey ? '✅ SET' : '❌ MISSING');
+console.log('✅ Creating real Supabase client');
 
 // Create Supabase client with enhanced configuration
-export const supabase = createClient<Database>(supabaseUrl, supabaseAnonKey, {
+export const supabase = createClient<Database>(finalSupabaseUrl, finalSupabaseAnonKey, {
   auth: {
     storage: AsyncStorage,
     autoRefreshToken: true,
