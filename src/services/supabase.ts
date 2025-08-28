@@ -15,7 +15,7 @@ console.log('🔧 Supabase Config Check:');
 console.log('URL:', finalSupabaseUrl ? '✅ SET' : '❌ MISSING');
 console.log('Key:', finalSupabaseAnonKey ? '✅ SET' : '❌ MISSING');
 console.log('✅ Creating real Supabase client');
-console.log('🆕 App Version: 2.0.0 - Cache Busted!');
+console.log('🆕 App Version: 3.0.0 - COMPLETE RESET!');
 
 // Create Supabase client with enhanced configuration
 export const supabase = createClient<Database>(finalSupabaseUrl, finalSupabaseAnonKey, {
