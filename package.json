@@ -12,7 +12,7 @@
     "typecheck": "tsc --noEmit",
     "clean": "rimraf dist build node_modules/.cache",
     "prebuild": "npm run clean && npm run typecheck",
-    "build": "echo 'BUILD_TIMESTAMP=$(date +%s)' && expo export --platform web --output-dir dist",
+    "build": "echo 'BUILD_TIMESTAMP=$(date +%s)' && echo 'FORCE_REBUILD_$(date +%s)' && expo export --platform web --output-dir dist",
     "postbuild": "node scripts/postbuild-pages.mjs",
     "deploy": "npm run build && npx netlify deploy --prod --dir=dist"
   },

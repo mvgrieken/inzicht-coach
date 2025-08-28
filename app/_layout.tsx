@@ -44,7 +44,7 @@ export default function RootLayout() {
   const colorScheme = useColorScheme();
   const isDark = colorScheme === 'dark';
   
-  console.log('🆕 ROOT LAYOUT - Version 5.0.0 - NO TABS ROUTE');
+  console.log('🆕 ROOT LAYOUT - Version 6.0.0 - COMPLETE REWRITE');
   
   return (
     <ErrorBoundary>
