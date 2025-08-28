@@ -196,7 +196,7 @@ export function useUpdatePoints() {
 export function useCheckBadgeEligibility(userId: string) {
   const earnBadge = useEarnBadge();
   const updatePoints = useUpdatePoints();
-  const { data: unlockedBadges = [] } = useUnlockedBadges(userId);
+  const unlockedBadges = useUnlockedBadges(userId) || [];
 
   const checkAndAwardBadges = async (userStats: {
     totalDays: number;

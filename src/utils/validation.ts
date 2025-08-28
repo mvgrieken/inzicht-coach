@@ -98,7 +98,7 @@ export function validateAndSanitize<T>(
     if (error instanceof z.ZodError) {
       return {
         success: false,
-        errors: error.errors.map((err) => err.message),
+        errors: (error as any).errors?.map((err: any) => err.message) || [],
       };
     }
     return {
@@ -119,7 +119,7 @@ export function validatePassword(password: string): { valid: boolean; errors: st
   }
   return {
     valid: false,
-    errors: result.error.errors.map((err) => err.message),
+    errors: (result.error as any).errors?.map((err: any) => err.message) || [],
   };
 }
 

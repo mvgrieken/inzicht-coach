@@ -59,7 +59,9 @@ export function SkeletonChatMessage() {
         <SkeletonText lines={2} lineHeight={18} />
         <View style={tw`mt-2 flex-row items-center`}>
           <Skeleton width={60} height={12} />
-          <Skeleton width={40} height={12} style={tw`ml-2`} />
+          <View style={tw`ml-2`}>
+            <Skeleton width={40} height={12} />
+          </View>
         </View>
       </View>
     </View>
@@ -75,7 +77,9 @@ export function SkeletonDailyLog() {
       </View>
       <View style={tw`flex-row items-center mb-2`}>
         <Skeleton width={24} height={24} borderRadius={12} />
-        <Skeleton width={80} height={16} style={tw`ml-2`} />
+        <View style={tw`ml-2`}>
+          <Skeleton width={80} height={16} />
+        </View>
       </View>
       <SkeletonText lines={1} />
     </View>

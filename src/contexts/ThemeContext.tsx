@@ -39,7 +39,17 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const value: ThemeContextType = {
     isDark,
     colorScheme,
-    colors,
+    colors: {
+      primary: colors.primary || '#3B82F6',
+      background: colors.background || '#FFFFFF',
+      surface: colors.surface || '#F8FAFC',
+      text: colors.text || '#1F2937',
+      textSecondary: colors.textSecondary || '#6B7280',
+      border: colors.border || '#E5E7EB',
+      success: colors.success || '#10B981',
+      warning: colors.warning || '#F59E0B',
+      error: colors.error || '#EF4444',
+    },
   };
 
   return (

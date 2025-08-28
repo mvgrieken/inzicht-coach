@@ -26,7 +26,7 @@ export function VoiceRecorder({ userId, onSaved }: VoiceRecorderProps) {
     try {
       await startRecording();
     } catch (error) {
-      Alert.alert('Fout', error.message);
+      Alert.alert('Fout', error instanceof Error ? error.message : 'Onbekende fout');
     }
   };
 
@@ -35,7 +35,7 @@ export function VoiceRecorder({ userId, onSaved }: VoiceRecorderProps) {
       await stopRecording();
       setShowNotesInput(true);
     } catch (error) {
-      Alert.alert('Fout', error.message);
+      Alert.alert('Fout', error instanceof Error ? error.message : 'Onbekende fout');
     }
   };
 
@@ -58,7 +58,7 @@ export function VoiceRecorder({ userId, onSaved }: VoiceRecorderProps) {
       setShowNotesInput(false);
       onSaved?.();
     } catch (error) {
-      Alert.alert('Fout', error.message);
+      Alert.alert('Fout', error instanceof Error ? error.message : 'Onbekende fout');
     }
   };
 

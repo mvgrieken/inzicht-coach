@@ -5,11 +5,10 @@
       "args": [
         "-y",
         "@supabase/mcp-server-supabase@latest",
-        "--read-only",
-        "--project-ref=oxtactccnjfcbgnnukek"
+        "--project-ref=trrsgvxoylhcudtiimvb"
       ],
       "env": {
-        "SUPABASE_ACCESS_TOKEN": "sbp_35df4b2785a7d2c27b03b68d74191214685afbb0"
+        "SUPABASE_ACCESS_TOKEN": "sbp_9c48053f542df8ae5676b7b3b25e5b1f9e36ea8e"
       }
     }
   }

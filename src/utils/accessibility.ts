@@ -53,7 +53,7 @@ export const getAccessibleColor = (
   isDark: boolean
 ): string => {
   const colorSet = a11yColors[colorKey];
-  return isDark ? colorSet.dark : colorSet.light;
+  return isDark ? (colorSet.dark || '#000000') : (colorSet.light || '#FFFFFF');
 };
 
 /**
