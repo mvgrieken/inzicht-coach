@@ -6,6 +6,7 @@ import { useColorScheme } from 'react-native';
 import { useDeviceContext } from 'twrnc';
 import { AuthProvider } from '@/contexts/AuthContext';
 import { ThemeProvider } from '@/contexts/ThemeContext';
+import { ErrorBoundary } from '@/components/ui/ErrorBoundary';
 import tw from '@/utils/tailwind';
 
 // Create a client with enhanced configuration
@@ -44,43 +45,45 @@ export default function RootLayout() {
   const isDark = colorScheme === 'dark';
   
   return (
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider>
-        <AuthProvider>
-          <StatusBar style={isDark ? "light" : "dark"} />
-          <Stack
-          screenOptions={{
-            headerStyle: {
-              backgroundColor: tw.color('primary-500'),
-            },
-            headerTintColor: tw.color('white'),
-            headerTitleStyle: {
-              fontWeight: 'bold',
-              color: tw.color('white'),
-            },
-          }}
-        >
-          <Stack.Screen 
-            name="(tabs)" 
-            options={{ headerShown: false }} 
-          />
-          <Stack.Screen 
-            name="auth/login" 
-            options={{ 
-              title: 'Inloggen',
-              presentation: 'modal' 
-            }} 
-          />
-          <Stack.Screen 
-            name="auth/register" 
-            options={{ 
-              title: 'Account aanmaken',
-              presentation: 'modal' 
-            }} 
-          />
-          </Stack>
-        </AuthProvider>
-      </ThemeProvider>
-    </QueryClientProvider>
+    <ErrorBoundary>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider>
+          <AuthProvider>
+            <StatusBar style={isDark ? "light" : "dark"} />
+            <Stack
+              screenOptions={{
+                headerStyle: {
+                  backgroundColor: tw.color('primary-500'),
+                },
+                headerTintColor: tw.color('white'),
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                  color: tw.color('white'),
+                },
+              }}
+            >
+              <Stack.Screen 
+                name="(tabs)" 
+                options={{ headerShown: false }} 
+              />
+              <Stack.Screen 
+                name="auth/login" 
+                options={{ 
+                  title: 'Inloggen',
+                  presentation: 'modal' 
+                }} 
+              />
+              <Stack.Screen 
+                name="auth/register" 
+                options={{ 
+                  title: 'Account aanmaken',
+                  presentation: 'modal' 
+                }} 
+              />
+            </Stack>
+          </AuthProvider>
+        </ThemeProvider>
+      </QueryClientProvider>
+    </ErrorBoundary>
   );
 }

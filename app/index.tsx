@@ -6,23 +6,11 @@ import tw from '@/utils/tailwind';
 
 export default function IndexScreen() {
   const router = useRouter();
+  const { user, loading } = useAuthContext();
   
   // Debug: Check environment variables
   const supabaseUrl = process.env.EXPO_PUBLIC_SUPABASE_URL;
   const supabaseKey = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY;
-  
-  // Safe AuthContext usage
-  let user = null;
-  let loading = true;
-  
-  try {
-    const authContext = useAuthContext();
-    user = authContext.user;
-    loading = authContext.loading;
-  } catch (error) {
-    console.warn('AuthContext not available, defaulting to login');
-    loading = false; // Stop loading and go to login
-  }
 
   useEffect(() => {
     // Add some debug logging for web deployment
@@ -45,7 +33,7 @@ export default function IndexScreen() {
     }, 100);
 
     return () => clearTimeout(timer);
-  }, [user, loading, router]);
+  }, [user, loading, router, supabaseUrl, supabaseKey]);
 
   return (
     <View style={tw`flex-1 bg-neutral-50 dark:bg-neutral-900 justify-center items-center p-4`}>
