@@ -56,7 +56,7 @@ export default function RegisterScreen() {
           Alert.alert(
             'Welkom!', 
             'Je account is succesvol aangemaakt en je bent ingelogd.',
-            [{ text: 'OK', onPress: () => router.replace('/(tabs)') }]
+            [{ text: 'OK', onPress: () => router.replace('/dashboard') }]
           );
         }
       }

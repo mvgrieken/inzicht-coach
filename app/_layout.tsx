@@ -44,7 +44,7 @@ export default function RootLayout() {
   const colorScheme = useColorScheme();
   const isDark = colorScheme === 'dark';
   
-  console.log('🆕 ROOT LAYOUT - Version 6.0.0 - COMPLETE REWRITE');
+  console.log('🆕 ROOT LAYOUT - Version 7.0.0 - FIXED TABS REDIRECT');
   
   return (
     <ErrorBoundary>
@@ -64,7 +64,14 @@ export default function RootLayout() {
                 },
               }}
             >
-              {/* REMOVED (tabs) route completely */}
+              {/* NEW DASHBOARD ROUTE */}
+              <Stack.Screen 
+                name="dashboard" 
+                options={{ 
+                  title: 'Dashboard',
+                  headerShown: true 
+                }} 
+              />
               <Stack.Screen 
                 name="auth/login" 
                 options={{ 

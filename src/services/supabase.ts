@@ -15,7 +15,7 @@ console.log('🔧 Supabase Config Check:');
 console.log('URL:', finalSupabaseUrl ? '✅ SET' : '❌ MISSING');
 console.log('Key:', finalSupabaseAnonKey ? '✅ SET' : '❌ MISSING');
 console.log('✅ Creating real Supabase client');
-console.log('🆕 App Version: 6.0.0 - COMPLETE REWRITE!');
+console.log('🆕 App Version: 7.0.0 - FIXED TABS REDIRECT!');
 
 // Create Supabase client with enhanced configuration
 export const supabase = createClient<Database>(finalSupabaseUrl, finalSupabaseAnonKey, {

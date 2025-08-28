@@ -44,7 +44,7 @@ export default function LoginScreen() {
         Alert.alert('Inloggen mislukt', error.message);
       } else if (data?.user) {
         // Successfully logged in
-        router.replace('/(tabs)');
+        router.replace('/dashboard');
       }
     } catch (error) {
       Alert.alert('Fout', 'Er ging iets mis. Probeer het opnieuw.');

@@ -8,8 +8,8 @@ export default function IndexScreen() {
   const [isRedirecting, setIsRedirecting] = useState(false);
 
   useEffect(() => {
-    console.log('🆕 NEW VERSION 6.0.0 - COMPLETE REWRITE - TIMESTAMP:', Date.now());
-    console.log('🚀 FORCE FULL REBUILD - NO CACHE');
+    console.log('🆕 NEW VERSION 7.0.0 - FIXED TABS REDIRECT - TIMESTAMP:', Date.now());
+console.log('🚀 NO MORE (TABS) REDIRECTS - NEW DASHBOARD');
     
     // Force redirect to login with state management
     const timer = setTimeout(() => {
@@ -31,7 +31,7 @@ export default function IndexScreen() {
     <View style={tw`flex-1 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 justify-center items-center p-6`}>
       <View style={tw`bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl max-w-sm w-full`}>
         <Text style={tw`text-3xl font-bold text-center text-blue-600 dark:text-blue-400 mb-6`}>
-          Inzicht Coach v6.0.0
+          Inzicht Coach v7.0.0
         </Text>
         
         <View style={tw`items-center mb-6`}>
