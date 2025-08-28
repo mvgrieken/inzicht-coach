@@ -31,7 +31,7 @@ export function useAuthContext() {
     return {
       session: null,
       user: null,
-      loading: true,
+      loading: false, // Changed from true to false
       signIn: async () => ({ data: null, error: new Error('AuthContext not available') }),
       signUp: async () => ({ data: null, error: new Error('AuthContext not available') }),
       signOut: async () => ({ error: new Error('AuthContext not available') }),

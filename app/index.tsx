@@ -21,6 +21,7 @@ export default function IndexScreen() {
 
     // Add delay to prevent race conditions
     const timer = setTimeout(() => {
+      console.log('Timer fired - Loading:', loading, 'User:', user ? 'LOGGED IN' : 'NOT LOGGED IN');
       if (!loading) {
         if (user) {
           console.log('Redirecting to tabs');
@@ -29,8 +30,10 @@ export default function IndexScreen() {
           console.log('Redirecting to login');
           router.replace('/auth/login');
         }
+      } else {
+        console.log('Still loading, waiting...');
       }
-    }, 100);
+    }, 500); // Increased delay
 
     return () => clearTimeout(timer);
   }, [user, loading, router, supabaseUrl, supabaseKey]);
