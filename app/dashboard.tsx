@@ -23,7 +23,7 @@ export default function DashboardScreen() {
       <ScrollView style={tw`flex-1 p-6`}>
         <View style={tw`mb-8`}>
           <Text style={tw`text-3xl font-bold text-primary-500 mb-2`}>
-            Dashboard v6.0.0
+            Dashboard v8.0.0
           </Text>
           <Text style={tw`text-base text-neutral-600 dark:text-neutral-400`}>
             Welkom terug, {user?.email || 'Gebruiker'}!

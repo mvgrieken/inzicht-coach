@@ -44,7 +44,7 @@ export default function RootLayout() {
   const colorScheme = useColorScheme();
   const isDark = colorScheme === 'dark';
   
-  console.log('🆕 ROOT LAYOUT - Version 7.0.0 - FIXED TABS REDIRECT');
+  console.log('🆕 ROOT LAYOUT - Version 8.0.0 - SUPABASE AUTH');
   
   return (
     <ErrorBoundary>
