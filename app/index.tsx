@@ -7,8 +7,8 @@ export default function IndexScreen() {
   const router = useRouter();
 
   useEffect(() => {
-    console.log('🆕 NEW VERSION 4.0.0 - FORCE CACHE BUST - TIMESTAMP:', Date.now());
-    console.log('🚀 COMPLETE ROUTING RESET - NO AUTH CONTEXT');
+    console.log('🆕 NEW VERSION 5.0.0 - NO TABS ROUTE - TIMESTAMP:', Date.now());
+console.log('🚀 COMPLETE ROUTING RESET - NO AUTH CONTEXT - NO TABS');
     
     // Force redirect to login immediately
     const timer = setTimeout(() => {
@@ -22,7 +22,7 @@ export default function IndexScreen() {
   return (
     <View style={tw`flex-1 bg-neutral-50 dark:bg-neutral-900 justify-center items-center p-4`}>
       <Text style={tw`text-2xl font-bold text-primary-500 mb-4`}>
-        Inzicht Coach v4.0.0
+        Inzicht Coach v5.0.0
       </Text>
       <Text style={tw`text-base text-neutral-600 dark:text-neutral-400 mb-4`}>
         Force Cache Bust - Redirecting to login...

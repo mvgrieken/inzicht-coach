@@ -44,6 +44,8 @@ export default function RootLayout() {
   const colorScheme = useColorScheme();
   const isDark = colorScheme === 'dark';
   
+  console.log('🆕 ROOT LAYOUT - Version 5.0.0 - NO TABS ROUTE');
+  
   return (
     <ErrorBoundary>
       <QueryClientProvider client={queryClient}>
@@ -62,10 +64,7 @@ export default function RootLayout() {
                 },
               }}
             >
-              <Stack.Screen 
-                name="(tabs)" 
-                options={{ headerShown: false }} 
-              />
+              {/* REMOVED (tabs) route completely */}
               <Stack.Screen 
                 name="auth/login" 
                 options={{ 
