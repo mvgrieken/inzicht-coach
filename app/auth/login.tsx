@@ -25,17 +25,25 @@ export default function LoginScreen() {
   }
 
   const handleLogin = async () => {
-    if (!email || !password) {
-      Alert.alert('Fout', 'Vul alle velden in');
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || !emailRegex.test(email)) {
+      Alert.alert('Fout', 'Vul een geldig email adres in');
+      return;
+    }
+
+    if (!password) {
+      Alert.alert('Fout', 'Vul je wachtwoord in');
       return;
     }
 
     setIsLoading(true);
     try {
-      const { error } = await signIn(email, password);
+      const { data, error } = await signIn(email, password);
       if (error) {
         Alert.alert('Inloggen mislukt', error.message);
-      } else {
+      } else if (data?.user) {
+        // Successfully logged in
         router.replace('/(tabs)');
       }
     } catch (error) {
@@ -102,12 +110,46 @@ export default function LoginScreen() {
 
         
 
-        <View style={tw`flex-row justify-center`}>
+        <View style={tw`flex-row justify-center mb-4`}>
           <Text style={tw`text-neutral-600 dark:text-neutral-400`}>Nog geen account? </Text>
           <TouchableOpacity onPress={() => router.push('/auth/register')}>
             <Text style={tw`text-primary-500 font-medium`}>Registreren</Text>
           </TouchableOpacity>
         </View>
+
+        <TouchableOpacity
+          style={tw`items-center`}
+          onPress={() => {
+            Alert.prompt(
+              'Wachtwoord vergeten',
+              'Vul je email adres in om je wachtwoord te resetten:',
+              [
+                { text: 'Annuleren', style: 'cancel' },
+                {
+                  text: 'Versturen',
+                  onPress: async (email) => {
+                    if (email) {
+                      try {
+                        const { error } = await authContext?.resetPassword(email) || { error: null };
+                        if (error) {
+                          Alert.alert('Fout', error.message);
+                        } else {
+                          Alert.alert('Email verstuurd', 'Check je email voor een reset link.');
+                        }
+                      } catch (error) {
+                        Alert.alert('Fout', 'Er ging iets mis. Probeer het opnieuw.');
+                      }
+                    }
+                  }
+                }
+              ],
+              'plain-text',
+              email
+            );
+          }}
+        >
+          <Text style={tw`text-primary-500 font-medium text-sm`}>Wachtwoord vergeten?</Text>
+        </TouchableOpacity>
 
         {/* Quick test login */}
         <TouchableOpacity

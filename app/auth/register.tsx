@@ -15,7 +15,14 @@ export default function RegisterScreen() {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleRegister = async () => {
-    if (!email || !password || !confirmPassword) {
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || !emailRegex.test(email)) {
+      Alert.alert('Fout', 'Vul een geldig email adres in');
+      return;
+    }
+
+    if (!password || !confirmPassword) {
       Alert.alert('Fout', 'Vul alle velden in');
       return;
     }
@@ -32,16 +39,26 @@ export default function RegisterScreen() {
 
     setIsLoading(true);
     try {
-      const { error } = await signUp(email, password, fullName);
+      const { data, error } = await signUp(email, password, fullName);
       
       if (error) {
         Alert.alert('Registreren mislukt', error.message);
       } else {
-        Alert.alert(
-          'Gelukt!', 
-          'Check je email voor een verificatielink.',
-          [{ text: 'OK', onPress: () => router.replace('/auth/login') }]
-        );
+        // Check if email confirmation is required
+        if (data?.user && !data?.session) {
+          Alert.alert(
+            'Account aangemaakt!', 
+            'Check je email voor een verificatielink om je account te activeren.',
+            [{ text: 'OK', onPress: () => router.replace('/auth/login') }]
+          );
+        } else if (data?.session) {
+          // User is automatically signed in
+          Alert.alert(
+            'Welkom!', 
+            'Je account is succesvol aangemaakt en je bent ingelogd.',
+            [{ text: 'OK', onPress: () => router.replace('/(tabs)') }]
+          );
+        }
       }
     } catch (error) {
       Alert.alert('Fout', 'Er ging iets mis. Probeer het opnieuw.');

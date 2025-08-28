@@ -23,7 +23,7 @@ export default function DashboardScreen() {
     );
   }
   const getMotivationalMessage = () => {
-    if (!userStats) return "Welkom bij Inzicht Coach! 🌟";
+    if (!userStats) return `Welkom ${user?.user_metadata?.full_name || 'bij Inzicht Coach'}! 🌟`;
     
     if (userStats.streakDays === 0) return "Begin vandaag je nieuwe streak! 💪";
     if (userStats.streakDays < 7) return `${userStats.streakDays} dagen bezig - lekker doorgaan! 🔥`;
@@ -38,6 +38,18 @@ export default function DashboardScreen() {
           <Text style={tw`text-2xl font-bold text-primary-500 mb-6 text-center`}>
             {getMotivationalMessage()}
           </Text>
+          
+          {/* Welcome message for new users */}
+          {!userStats && (
+            <View style={tw`bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg mb-6 border-l-4 border-blue-500`}>
+              <Text style={tw`text-base text-blue-800 dark:text-blue-200 font-medium mb-2`}>
+                🎉 Welkom bij Inzicht Coach!
+              </Text>
+              <Text style={tw`text-sm text-blue-700 dark:text-blue-300 leading-5`}>
+                Start je reis naar een gezondere levensstijl. Gebruik het dagboek om je voortgang bij te houden, chat met de AI coach voor advies, en ontdek tips in de kennisbank.
+              </Text>
+            </View>
+          )}
           
           {/* Today's Stats */}
           <View style={tw`mb-6`}>
