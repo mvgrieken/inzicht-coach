@@ -52,22 +52,15 @@ export default function LoginScreen() {
   return (
     <SafeAreaView style={tw`flex-1 bg-neutral-50 dark:bg-neutral-900`}>
       <View style={tw`flex-1 p-6 justify-center`}>
-        {missingEnv && (
-          <View style={tw`bg-red-50 border border-red-200 p-4 rounded-lg mb-6`}>
-            <Text style={tw`text-red-800 font-medium mb-2`}>Configuratie probleem</Text>
-            <Text style={tw`text-red-700 text-sm`}>
-              Environment variabelen niet gevonden. Check Netlify dashboard → Environment Variables.
-            </Text>
-          </View>
-        )}
+        
 
         <View style={tw`mb-8`}>
           <Text style={tw`text-3xl font-bold text-primary-500 text-center mb-2`}>
             Welkom bij Inzicht Coach!
           </Text>
-          <Text style={tw`text-base text-neutral-600 dark:text-neutral-400 text-center mb-4`}>
-            {missingEnv ? 'App wordt geconfigureerd...' : 'Log in om je voortgang te bekijken'}
-          </Text>
+                     <Text style={tw`text-base text-neutral-600 dark:text-neutral-400 text-center mb-4`}>
+             Log in om je voortgang te bekijken
+           </Text>
 
 
         </View>
@@ -104,20 +97,12 @@ export default function LoginScreen() {
           onPress={handleLogin}
           disabled={isLoading}
         >
-          <Text style={tw`text-white font-semibold text-base`}>
-            {isLoading ? 'Inloggen...' : missingEnv ? 'Test demo mode' : 'Inloggen'}
-          </Text>
+                     <Text style={tw`text-white font-semibold text-base`}>
+             {isLoading ? 'Inloggen...' : 'Inloggen'}
+           </Text>
         </TouchableOpacity>
 
-        {/* Demo mode info */}
-        {missingEnv && (
-          <View style={tw`bg-yellow-50 border border-yellow-200 p-3 rounded-lg mb-4`}>
-            <Text style={tw`text-yellow-800 text-sm font-medium mb-1`}>Demo mode</Text>
-            <Text style={tw`text-yellow-700 text-xs`}>
-              Environment variabelen zijn niet geconfigureerd. Dit is normaal bij eerste deployment.
-            </Text>
-          </View>
-        )}
+        
 
         <View style={tw`flex-row justify-center`}>
           <Text style={tw`text-neutral-600 dark:text-neutral-400`}>Nog geen account? </Text>
