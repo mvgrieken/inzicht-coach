@@ -11,9 +11,7 @@ export default function LoginScreen() {
   const [password, setPassword] = useState('test123456');
   const [isLoading, setIsLoading] = useState(false);
 
-  // Environment variables (for debug panel)
-  const supabaseUrl = process.env.EXPO_PUBLIC_SUPABASE_URL;
-  const supabaseKey = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY;
+
 
   // Safe AuthContext usage with graceful fallback (no setState in render)
   let authContext: ReturnType<typeof useAuthContext> | null = null;
@@ -47,7 +45,7 @@ export default function LoginScreen() {
     }
   };
 
-  const missingEnv = !supabaseUrl;
+
 
   return (
     <SafeAreaView style={tw`flex-1 bg-neutral-50 dark:bg-neutral-900`}>

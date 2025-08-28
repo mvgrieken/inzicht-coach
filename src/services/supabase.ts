@@ -7,13 +7,9 @@ import { Database } from '@/lib/types/supabase';
 const supabaseUrl = 'https://trrsgvxoylhcudtiimvb.supabase.co';
 const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRycnNndnhveWxoY3VkdGlpbXZiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYxOTQ3OTIsImV4cCI6MjA3MTc3MDc5Mn0.PG4cDu5UVUwE4Kp7NejdTcxdJDypkpdpQSO97Ipl8kQ';
 
-// Fallback to environment variables if available (for development)
-const envSupabaseUrl = process.env.EXPO_PUBLIC_SUPABASE_URL;
-const envSupabaseAnonKey = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY;
-
-// Use environment variables if available, otherwise use hardcoded values
-const finalSupabaseUrl = envSupabaseUrl || supabaseUrl;
-const finalSupabaseAnonKey = envSupabaseAnonKey || supabaseAnonKey;
+// Force use hardcoded values (ignore environment variables)
+const finalSupabaseUrl = supabaseUrl;
+const finalSupabaseAnonKey = supabaseAnonKey;
 
 console.log('🔧 Supabase Config Check:');
 console.log('URL:', finalSupabaseUrl ? '✅ SET' : '❌ MISSING');
